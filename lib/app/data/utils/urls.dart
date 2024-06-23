@@ -12,9 +12,18 @@ abstract class Urls {
       "$_BASE_URL/tv/popular?api_key=$_APIKEY";
   static const String NOW_PLAYING_MOVIES =
       "$_BASE_URL/movie/now_playing?api_key=$_APIKEY";
-  static const String NOW_PLAYING_TV_SERIES =
-      "$_BASE_URL/tv/now_playing?api_key=$_APIKEY";
 
   static String SEARCH_URL(String value) =>
       "$_BASE_URL/search/multi?api_key=$_APIKEY&query=$value";
+
+  static String MOVIE_DETAILS(String id) =>
+      "$_BASE_URL/movie/$id?api_key=$_APIKEY";
+  static String MOVIE_TRAILER_URL(String id) =>
+      '$_BASE_URL/movie/$id/videos?api_key=$_APIKEY';
+  static String SIMILAR_MOVIES(String id) =>
+      '$_BASE_URL/movie/$id/similar?api_key=$_APIKEY';
+  static String RECOMMENDATION_MOVIES(String id) =>
+      '$_BASE_URL/movie/$id/recommendations?api_key=$_APIKEY';
+  static String MOVIE_CREDITS(String id) =>
+      "$_BASE_URL/movie/$id/credits?api_key=$_APIKEY";
 }

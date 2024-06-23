@@ -31,21 +31,4 @@ class NowPlayingController extends GetxController {
       return false;
     }
   }
-
-  Future<bool> getNowPlayingTvSeriesList() async {
-    isShowsListLoading.value = true;
-
-    final response = await GetRequest.execute(Urls.NOW_PLAYING_TV_SERIES);
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      tvSeriesNowPlayingList = tvSeriesListModelFromJson(response.responseData);
-      isShowsListLoading.value = false;
-      update();
-      return true;
-    } else {
-      isShowsListLoading.value = false;
-      update();
-      return false;
-    }
-  }
 }

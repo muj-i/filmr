@@ -8,6 +8,7 @@ class BottomNavLayoutView extends GetView<BottomNavLayoutController> {
   const BottomNavLayoutView({super.key});
   @override
   Widget build(BuildContext context) {
+    Get.put(BottomNavLayoutController());
     return Obx(() {
       return Scaffold(
         body: controller.screens[controller.selectedIndex.value],
