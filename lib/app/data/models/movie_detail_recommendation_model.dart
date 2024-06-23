@@ -58,7 +58,6 @@ class Result {
   String? title;
   List<int>? genreIds;
   double? popularity;
-  DateTime? releaseDate;
   bool? video;
   double? voteAverage;
   int? voteCount;
@@ -74,7 +73,6 @@ class Result {
     this.title,
     this.genreIds,
     this.popularity,
-    this.releaseDate,
     this.video,
     this.voteAverage,
     this.voteCount,
@@ -93,9 +91,6 @@ class Result {
             ? []
             : List<int>.from(json["genre_ids"]!.map((x) => x)),
         popularity: json["popularity"]?.toDouble(),
-        releaseDate: json["release_date"] == null
-            ? null
-            : DateTime.parse(json["release_date"]),
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
@@ -113,8 +108,6 @@ class Result {
         "genre_ids":
             genreIds == null ? [] : List<dynamic>.from(genreIds!.map((x) => x)),
         "popularity": popularity,
-        "release_date":
-            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,

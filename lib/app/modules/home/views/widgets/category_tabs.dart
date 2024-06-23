@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:filmr/app/modules/home/controllers/home_controller.dart';
 import 'package:filmr/app/modules/home/views/widgets/movies_list.dart';
-import 'package:filmr/app/modules/home/views/widgets/tv_series_lis.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,13 +23,13 @@ class CategoryTabs extends StatelessWidget {
                 controller.updateTabIndex(tabController.index);
                 switch (tabController.index) {
                   case 0:
-                    controller.getMoviesList();
+                    controller.getPopularMoviesList();
                     break;
                   case 1:
-                    controller.getTvSeriesList();
+                    controller.getTopRatedMoviesList();
                     break;
                   case 2:
-                    log('2');
+                    controller.getUpcomingMoviesList();
                     break;
 
                   default:
@@ -54,8 +51,8 @@ class CategoryTabs extends StatelessWidget {
                     dividerColor: Colors.transparent,
                     splashBorderRadius: BorderRadius.circular(30),
                     tabs: [
-                      _buildTab(0, 'Movies', controller),
-                      _buildTab(1, 'Tv Series', controller),
+                      _buildTab(0, 'Popular Movies', controller),
+                      _buildTab(1, 'Top Rated', controller),
                       _buildTab(2, 'Upcoming', controller),
                     ],
                   ),
@@ -66,8 +63,8 @@ class CategoryTabs extends StatelessWidget {
                           // physics: NeverScrollableScrollPhysics(),
                           children: [
                             MoviesList(),
-                            TvSeriesLis(),
-                            Upcomming(),
+                            MoviesList(),
+                            MoviesList(),
                           ]),
                     ),
                   ),
@@ -104,27 +101,6 @@ class CategoryTabs extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class Upcomming extends StatelessWidget {
-  const Upcomming({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('Upcomming Series');
-  }
-}
-
-class Tabbartext extends StatelessWidget {
-  final String text;
-  const Tabbartext(this.text, {super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     );
   }
 }

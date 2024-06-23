@@ -1,5 +1,4 @@
 import 'package:filmr/app/data/models/movies_list_model.dart';
-import 'package:filmr/app/data/models/tv_series_list_model.dart';
 import 'package:filmr/app/data/services/network_caller/request_methods/get_request.dart';
 import 'package:filmr/app/data/utils/urls.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ class NowPlayingController extends GetxController {
 
   RxBool isShowsListLoading = false.obs;
   MoviesListModel moviesNowPlayingList = MoviesListModel();
-  TvSeriesListModel tvSeriesNowPlayingList = TvSeriesListModel();
 
   Future<bool> getNowPlayingMoviesList() async {
     isShowsListLoading.value = true;

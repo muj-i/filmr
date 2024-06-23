@@ -1,4 +1,7 @@
-import 'package:filmr/app/data/models/movie_detail_similar_model.dart';
+import 'dart:developer';
+
+import 'package:filmr/app/data/models/movie_detail_credits_model.dart';
+import 'package:filmr/app/data/models/movie_detail_recommendation_model.dart';
 import 'package:filmr/app/data/models/movie_details_model.dart';
 import 'package:filmr/app/data/models/movie_list_trailer_model.dart';
 import 'package:filmr/app/data/utils/urls.dart';
@@ -33,8 +36,10 @@ class MovieDetailsController extends GetxController {
   MovieDetailsTrailerModel movieDetailsTrailerModel =
       MovieDetailsTrailerModel();
 
-  MovieDetailsSimilarModel movieDetailsSimilarModel =
-      MovieDetailsSimilarModel();
+  MovieDetailsRecommendationsModel movieDetailsRecommendationsModel =
+      MovieDetailsRecommendationsModel();
+  MovieDetailsCreditsModel movieDetailsCreditsModel =
+      MovieDetailsCreditsModel();
   Future<bool> getMoviesList() async {
     isLoading.value = true;
 
@@ -42,8 +47,7 @@ class MovieDetailsController extends GetxController {
         await GetRequest.execute(Urls.MOVIE_DETAILS(movieId.toString()));
     final responseTrailer =
         await GetRequest.execute(Urls.MOVIE_TRAILER_URL(movieId.toString()));
-    final responseSimilar =
-        await GetRequest.execute(Urls.SIMILAR_MOVIES(movieId.toString()));
+
     final responseRecommendation = await GetRequest.execute(
         Urls.RECOMMENDATION_MOVIES(movieId.toString()));
     final responseCredits =
@@ -56,20 +60,19 @@ class MovieDetailsController extends GetxController {
         movieDetailsTrailerModel =
             movieDetailsTrailerModelFromJson(responseTrailer.responseData);
       }
-      if (responseSimilar.statusCode == 200 ||
-          responseSimilar.statusCode == 201) {
-        movieDetailsSimilarModel =
-            movieDetailsSimilarModelFromJson(responseSimilar.responseData);
-      }
+
       if (responseRecommendation.statusCode == 200 ||
           responseRecommendation.statusCode == 201) {
-        movieDetailsSimilarModel = movieDetailsSimilarModelFromJson(
-            responseRecommendation.responseData);
+        movieDetailsRecommendationsModel =
+            movieDetailsRecommendationsModelFromJson(
+                responseRecommendation.responseData);
+        log('movieDetailsSimilarModel: ${movieDetailsRecommendationsModel.results!.length.toString()}');
       }
       if (responseCredits.statusCode == 200 ||
           responseCredits.statusCode == 201) {
-        movieDetailsSimilarModel =
-            movieDetailsSimilarModelFromJson(responseCredits.responseData);
+        movieDetailsCreditsModel =
+            movieDetailsCreditsModelFromJson(responseCredits.responseData);
+        log('movieDetailsSimilarModel: ${movieDetailsRecommendationsModel.results!.length.toString()}');
       }
       isLoading.value = false;
       update();

@@ -10,8 +10,6 @@ import '../modules/now_playing/bindings/now_playing_binding.dart';
 import '../modules/now_playing/views/now_playing_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
-import '../modules/tv_series_details/bindings/tv_series_details_binding.dart';
-import '../modules/tv_series_details/views/tv_series_details_view.dart';
 import '../modules/user_profile/bindings/user_profile_binding.dart';
 import '../modules/user_profile/views/user_profile_view.dart';
 
@@ -44,11 +42,6 @@ class AppPages {
       name: _Paths.MOVIE_DETAILS,
       page: () => const MovieDetailsView(),
       binding: MovieDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.TV_SERIES_DETAILS,
-      page: () => const TvSeriesDetailsView(),
-      binding: TvSeriesDetailsBinding(),
     ),
     GetPage(
       name: _Paths.USER_PROFILE,

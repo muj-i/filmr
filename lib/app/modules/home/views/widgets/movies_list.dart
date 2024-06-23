@@ -1,5 +1,6 @@
 import 'package:filmr/app/common/widgets/circular_loader.dart';
 import 'package:filmr/app/modules/home/controllers/home_controller.dart';
+import 'package:filmr/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,7 @@ class MoviesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final HomeController controller = Get.put(HomeController());
-    controller.getMoviesList();
+    controller.getPopularMoviesList();
     return Obx(() {
       return controller.isShowsListLoading.value
           ? const CircularLoader()
@@ -30,11 +31,22 @@ class MoviesList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
+                      InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          'https://image.tmdb.org/t/p/w500${controller.moviesList.results?[index].posterPath}',
-                          fit: BoxFit.cover,
+                        onTap: () {
+                          Get.toNamed(Routes.MOVIE_DETAILS, arguments: [
+                            controller.moviesList.results?[index].id
+                          ]);
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            controller.moviesList.results?[index].posterPath ==
+                                    null
+                                ? 'https://via.placeholder.com/150'
+                                : 'https://image.tmdb.org/t/p/w500${controller.moviesList.results?[index].posterPath}',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -51,5 +63,3 @@ class MoviesList extends StatelessWidget {
     });
   }
 }
-
-

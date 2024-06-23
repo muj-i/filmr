@@ -50,7 +50,11 @@ class NowPlayingView extends GetView<NowPlayingController> {
                               borderRadius: BorderRadius.circular(10),
                               child: Image.network(
                                 height: 250,
-                                'https://image.tmdb.org/t/p/w500${controller.moviesNowPlayingList.results?[index].posterPath}',
+                                controller.moviesNowPlayingList.results?[index]
+                                            .posterPath ==
+                                        null
+                                    ? 'https://via.placeholder.com/150'
+                                    : 'https://image.tmdb.org/t/p/w500${controller.moviesNowPlayingList.results?[index].posterPath}',
                                 fit: BoxFit.cover,
                               ),
                             ),

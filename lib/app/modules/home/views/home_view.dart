@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Find Movies, Tv series \nand more...',
+              const Text('Find Popular, Top rated \nMovies and more...',
                   style: TextStyle(fontSize: 24)),
               const SizedBox(height: 20),
               //! Search bar

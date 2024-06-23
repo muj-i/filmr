@@ -27,7 +27,6 @@ class MovieDetailsModel {
   String? posterPath;
   List<ProductionCompany>? productionCompanies;
   List<ProductionCountry>? productionCountries;
-  DateTime? releaseDate;
   int? revenue;
   int? runtime;
   List<SpokenLanguage>? spokenLanguages;
@@ -55,7 +54,6 @@ class MovieDetailsModel {
     this.posterPath,
     this.productionCompanies,
     this.productionCountries,
-    this.releaseDate,
     this.revenue,
     this.runtime,
     this.spokenLanguages,
@@ -97,9 +95,6 @@ class MovieDetailsModel {
             ? []
             : List<ProductionCountry>.from(json["production_countries"]!
                 .map((x) => ProductionCountry.fromJson(x))),
-        releaseDate: json["release_date"] == null
-            ? null
-            : DateTime.parse(json["release_date"]),
         revenue: json["revenue"],
         runtime: json["runtime"],
         spokenLanguages: json["spoken_languages"] == null
@@ -139,8 +134,6 @@ class MovieDetailsModel {
         "production_countries": productionCountries == null
             ? []
             : List<dynamic>.from(productionCountries!.map((x) => x.toJson())),
-        "release_date":
-            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
         "revenue": revenue,
         "runtime": runtime,
         "spoken_languages": spokenLanguages == null

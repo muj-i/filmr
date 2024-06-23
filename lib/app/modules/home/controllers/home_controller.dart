@@ -1,13 +1,12 @@
 import 'package:filmr/app/data/models/movies_list_model.dart';
 import 'package:filmr/app/data/models/search_list_model.dart';
-import 'package:filmr/app/data/models/tv_series_list_model.dart';
 import 'package:filmr/app/data/services/network_caller/request_methods/get_request.dart';
 import 'package:filmr/app/data/utils/urls.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-
+  static HomeController get to => Get.put(HomeController());
   final RxInt tabIndex = 0.obs;
 
   void updateTabIndex(int index) {
@@ -16,9 +15,8 @@ class HomeController extends GetxController {
 
   RxBool isShowsListLoading = false.obs;
   MoviesListModel moviesList = MoviesListModel();
-  TvSeriesListModel tvSeriesList = TvSeriesListModel();
 
-  Future<bool> getMoviesList() async {
+  Future<bool> getPopularMoviesList() async {
     isShowsListLoading.value = true;
 
     final response = await GetRequest.execute(Urls.POPULAR_MOVIES);
@@ -35,13 +33,29 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<bool> getTvSeriesList() async {
+  Future<bool> getTopRatedMoviesList() async {
     isShowsListLoading.value = true;
 
-    final response = await GetRequest.execute(Urls.POPULAR_TV_SERIES);
+    final response = await GetRequest.execute(Urls.TOP_RATED_MOVIES);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      tvSeriesList = tvSeriesListModelFromJson(response.responseData);
+      moviesList = moviesListModelFromJson(response.responseData);
+      isShowsListLoading.value = false;
+      update();
+      return true;
+    } else {
+      isShowsListLoading.value = false;
+      update();
+      return false;
+    }
+  }
+  Future<bool> getUpcomingMoviesList() async {
+    isShowsListLoading.value = true;
+
+    final response = await GetRequest.execute(Urls.UPCOMING_MOVIES);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      moviesList = moviesListModelFromJson(response.responseData);
       isShowsListLoading.value = false;
       update();
       return true;

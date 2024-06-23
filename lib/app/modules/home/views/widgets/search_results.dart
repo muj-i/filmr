@@ -1,5 +1,6 @@
 import 'package:filmr/app/common/widgets/circular_loader.dart';
 import 'package:filmr/app/modules/home/controllers/home_controller.dart';
+import 'package:filmr/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +11,6 @@ class SearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO fix search results
     return GetBuilder<HomeController>(
       builder: (controller) {
         return controller.isSearchListLoading.value
@@ -21,8 +21,6 @@ class SearchResults extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final movieName =
                         controller.searchList.results?[index].title ?? '';
-                    final tvSeriesName =
-                        controller.searchList.results?[index].name ?? '';
                     return Container(
                       height: 220,
                       margin: const EdgeInsets.all(8),
@@ -35,15 +33,23 @@ class SearchResults extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
+                            child: InkWell(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                controller.searchList.results?[index]
-                                            .mediaType ==
-                                        'tv'
-                                    ? 'https://image.tmdb.org/t/p/w500${controller.tvSeriesList.results?[index].posterPath}'
-                                    : 'https://image.tmdb.org/t/p/w500${controller.moviesList.results?[index].posterPath}',
-                                fit: BoxFit.cover,
+                              onTap: () {
+                                Get.toNamed(Routes.MOVIE_DETAILS, arguments: [
+                                  controller.moviesList.results?[index].id
+                                ]);
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller.searchList.results?[index]
+                                              .posterPath ==
+                                          null
+                                      ? 'https://via.placeholder.com/150'
+                                      : 'https://image.tmdb.org/t/p/w500${controller.searchList.results?[index].posterPath}',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -55,26 +61,12 @@ class SearchResults extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    controller.searchList.results?[index]
-                                                .mediaType ==
-                                            'tv'
-                                        ? tvSeriesName
-                                        : movieName,
+                                    movieName,
                                     style: const TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 5),
-                                  Text(
-                                    controller.searchList.results?[index]
-                                                .mediaType ==
-                                            'tv'
-                                        ? 'Category: TV Series'
-                                        : 'Category: Movie',
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
                                   Text(
                                     controller.searchList.results![index]
                                                 .popularity !=
@@ -104,6 +96,12 @@ class SearchResults extends StatelessWidget {
                                     style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Overview: ${controller.searchList.results![index].overview}',
+                                    maxLines: 5,
+                                    style: const TextStyle(
+                                        overflow: TextOverflow.ellipsis),
                                   ),
                                 ],
                               ),
