@@ -29,11 +29,7 @@ class SearchTextField extends StatelessWidget {
           ),
         ),
         hintText: 'Sherlock Holmes',
-        prefixIcon: InkWell(
-            onTap: () {
-              controller.searchlistfunction();
-            },
-            child: const Icon(Icons.search)),
+        prefixIcon: const Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
         ),
