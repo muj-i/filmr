@@ -42,12 +42,12 @@ A simple Filmr that allows you to browse and explore movie details using the [TM
 ### Screenshots
 
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="https://github.com/muj-i/filmr/screenshots/ss1.png" width="250" />
-    <img src="https://github.com/muj-i/filmr/screenshots/ss2.png" width="250" />
-    <img src="https://github.com/muj-i/filmr/screenshots/ss3.png" width="250" />
-    <img src="https://github.com/muj-i/filmr/screenshots/ss4.png" width="250" />
-    <img src="https://github.com/muj-i/filmr/screenshots/ss5.png" width="250" />
-    <img src="https://github.com/muj-i/filmr/screenshots/ss6.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss1.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss2.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss3.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss4.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss5.png" width="250" />
+    <img src="https://github.com/muj-i/filmr/blob/main/screenshots/ss6.png" width="250" />
 </div>
 
 ## Getting Started
