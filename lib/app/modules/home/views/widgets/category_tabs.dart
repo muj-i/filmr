@@ -11,7 +11,7 @@ class CategoryTabs extends StatelessWidget {
     final HomeController controller = Get.put(HomeController());
     controller.updateTabIndex(0);
     return SizedBox(
-      height: Get.height / 1.7,
+      height: 800,
       child: DefaultTabController(
         length: 3,
         child: Builder(
