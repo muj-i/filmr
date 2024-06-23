@@ -22,7 +22,7 @@ class SearchResults extends StatelessWidget {
                     final movieName =
                         controller.searchList.results?[index].title ?? '';
                     return Container(
-                      height: 220,
+                      height: 250,
                       margin: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 33, 28, 49),
@@ -37,7 +37,7 @@ class SearchResults extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                               onTap: () {
                                 Get.toNamed(Routes.MOVIE_DETAILS, arguments: [
-                                  controller.moviesList.results?[index].id
+                                  controller.searchList.results?[index].id
                                 ]);
                               },
                               child: ClipRRect(
@@ -62,9 +62,11 @@ class SearchResults extends StatelessWidget {
                                 children: [
                                   Text(
                                     movieName,
+                                    maxLines: 2,
                                     style: const TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold,
+                                        overflow: TextOverflow.ellipsis),
                                   ),
                                   const SizedBox(height: 5),
                                   Text(
@@ -81,7 +83,7 @@ class SearchResults extends StatelessWidget {
                                     controller.searchList.results![index]
                                                 .voteAverage !=
                                             null
-                                        ? 'Average Vote: ${controller.searchList.results![index].voteAverage!.toStringAsFixed(2).toString()}'
+                                        ? 'Average: ${controller.searchList.results![index].voteAverage!.toStringAsFixed(2).toString()}'
                                         : '',
                                     style: const TextStyle(
                                         fontSize: 16,
@@ -91,7 +93,7 @@ class SearchResults extends StatelessWidget {
                                     controller.searchList.results![index]
                                                 .voteCount !=
                                             null
-                                        ? 'Vote Count: ${controller.searchList.results![index].voteCount!.toStringAsFixed(2).toString()}'
+                                        ? 'Vote: ${controller.searchList.results![index].voteCount!.toStringAsFixed(2).toString()}'
                                         : '',
                                     style: const TextStyle(
                                         fontSize: 16,
@@ -99,7 +101,7 @@ class SearchResults extends StatelessWidget {
                                   ),
                                   Text(
                                     'Overview: ${controller.searchList.results![index].overview}',
-                                    maxLines: 5,
+                                    maxLines: 4,
                                     style: const TextStyle(
                                         overflow: TextOverflow.ellipsis),
                                   ),

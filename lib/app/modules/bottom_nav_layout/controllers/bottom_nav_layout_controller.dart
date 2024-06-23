@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class BottomNavLayoutController extends GetxController {
+  static BottomNavLayoutController get to => Get.put(BottomNavLayoutController());
   final List<Widget> screens = [
     const HomeView(),
     const NowPlayingView(),

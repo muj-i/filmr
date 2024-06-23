@@ -1,4 +1,5 @@
-import 'package:filmr/app/data/utils/token_keeper.dart';
+import 'package:filmr/app/data/utils/favorite_movie_keeper.dart';
+import 'package:filmr/app/modules/bottom_nav_layout/controllers/bottom_nav_layout_controller.dart';
 import 'package:filmr/app/modules/movie_details/controllers/movie_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,26 +33,28 @@ class DetailsViewButtons extends StatelessWidget {
               ),
             ),
           ),
-          // Container(
-          //   margin: const EdgeInsets.only(right: 11),
-          //   padding: const EdgeInsets.all(6),
-          //   decoration: BoxDecoration(
-          //     shape: BoxShape.circle,
-          //     color: Colors.white.withOpacity(.7),
-          //   ),
-          //   child: InkWell(
-          //     borderRadius: BorderRadius.circular(30),
-          //     onTap: () {
-          //       FavouriteMoviesKeeper.setFavouriteMovies(
-          //           controller.movieDetails);
-          //     },
-          //     child: const Icon(
-          //       Icons.favorite,
-          //       color: Color.fromARGB(255, 33, 28, 49),
-          //       size: 30,
-          //     ),
-          //   ),
-          // ),
+          Container(
+            margin: const EdgeInsets.only(right: 11),
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(.7),
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(30),
+              onTap: () {
+                FavouriteMoviesKeeper.saveMovieDetails(controller.movieDetails);
+                Get.back();
+                Future.delayed(const Duration(milliseconds: 500),
+                    () => BottomNavLayoutController.to.changeScreen(2));
+              },
+              child: const Icon(
+                Icons.favorite,
+                color: Color.fromARGB(255, 33, 28, 49),
+                size: 30,
+              ),
+            ),
+          ),
         ],
       ),
     );
