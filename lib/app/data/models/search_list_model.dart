@@ -48,14 +48,14 @@ class Result {
   String? originalLanguage;
   List<int>? genreIds;
   double? popularity;
-  DateTime? releaseDate;
+  // DateTime? releaseDate;
   bool? video;
   double? voteAverage;
   int? voteCount;
   String? originalName;
   String? name;
   DateTime? firstAirDate;
-  List<String>? originCountry;
+  // List<String>? originCountry;
   dynamic gender;
 
   Result({
@@ -70,14 +70,14 @@ class Result {
     this.originalLanguage,
     this.genreIds,
     this.popularity,
-    this.releaseDate,
+    // this.releaseDate,
     this.video,
     this.voteAverage,
     this.voteCount,
     this.originalName,
     this.name,
     this.firstAirDate,
-    this.originCountry,
+    // this.originCountry,
     this.gender,
   });
 
@@ -95,9 +95,9 @@ class Result {
             ? []
             : List<int>.from(json["genre_ids"]!.map((x) => x)),
         popularity: json["popularity"]?.toDouble(),
-        releaseDate: json["release_date"] == null
-            ? null
-            : DateTime.parse(json["release_date"]),
+        // releaseDate: json["release_date"] == null
+        //     ? null
+        //     : DateTime.parse(json["release_date"]),
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
@@ -106,9 +106,9 @@ class Result {
         firstAirDate: json["first_air_date"] == null
             ? null
             : DateTime.parse(json["first_air_date"]),
-        originCountry: json["origin_country"] == null
-            ? []
-            : List<String>.from(json["origin_country"]!.map((x) => x)),
+        // originCountry: json["origin_country"] == null
+        //     ? []
+        //     : List<String>.from(json["origin_country"]!.map((x) => x)),
         gender: json["gender"],
       );
 
@@ -125,8 +125,8 @@ class Result {
         "genre_ids":
             genreIds == null ? [] : List<dynamic>.from(genreIds!.map((x) => x)),
         "popularity": popularity,
-        "release_date":
-            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
+        // "release_date":
+        //     "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
@@ -134,9 +134,9 @@ class Result {
         "name": name,
         "first_air_date":
             "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
-        "origin_country": originCountry == null
-            ? []
-            : List<dynamic>.from(originCountry!.map((x) => x)),
+        // "origin_country": originCountry == null
+            // ? []
+            // : List<dynamic>.from(originCountry!.map((x) => x)),
         "gender": gender,
       };
 }

@@ -6,8 +6,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/movie_details/bindings/movie_details_binding.dart';
 import '../modules/movie_details/views/movie_details_view.dart';
-import '../modules/now_playting/bindings/now_playting_binding.dart';
-import '../modules/now_playting/views/now_playting_view.dart';
+import '../modules/now_playing/bindings/now_playing_binding.dart';
+import '../modules/now_playing/views/now_playing_view.dart';
 import '../modules/tv_series_details/bindings/tv_series_details_binding.dart';
 import '../modules/tv_series_details/views/tv_series_details_view.dart';
 import '../modules/user_profile/bindings/user_profile_binding.dart';
@@ -34,9 +34,9 @@ class AppPages {
       binding: BottomNavLayoutBinding(),
     ),
     GetPage(
-      name: _Paths.NOW_PLAYTING,
-      page: () => const NowPlaytingView(),
-      binding: NowPlaytingBinding(),
+      name: _Paths.NOW_PLAYING,
+      page: () => const NowPlayingView(),
+      binding: NowPlayingBinding(),
     ),
     GetPage(
       name: _Paths.MOVIE_DETAILS,

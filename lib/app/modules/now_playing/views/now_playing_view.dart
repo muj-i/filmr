@@ -1,19 +1,20 @@
-import 'package:filmr/app/modules/now_playting/views/widgets/now_playing_movies.dart';
-import 'package:filmr/app/modules/now_playting/views/widgets/now_playing_tv_series.dart';
+import 'package:filmr/app/modules/now_playing/views/widgets/now_playing_movies.dart';
+import 'package:filmr/app/modules/now_playing/views/widgets/now_playing_tv_series.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/now_playting_controller.dart';
+import '../controllers/now_playing_controller.dart';
 
-class NowPlaytingView extends GetView<NowPlaytingController> {
-  const NowPlaytingView({super.key});
+class NowPlayingView extends GetView<NowPlayingController> {
+  const NowPlayingView({super.key});
   @override
   Widget build(BuildContext context) {
-    final NowPlaytingController controller = Get.put(NowPlaytingController());
+    final NowPlayingController controller = Get.put(NowPlayingController());
+    controller.getNowPlayingMoviesList();
     controller.updateTabIndex(0);
     return SafeArea(
       child: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Builder(
           builder: (context) {
             final TabController tabController =
@@ -31,6 +32,13 @@ class NowPlaytingView extends GetView<NowPlaytingController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TabBar(
+                      onTap: (value) {
+                        if (value == 0) {
+                          controller.getNowPlayingMoviesList();
+                        } else {
+                          controller.getNowPlayingTvSeriesList();
+                        }
+                      },
                       // padding: EdgeInsets.zero,
                       // tabAlignment: TabAlignment.start,
                       // labelPadding:
@@ -63,7 +71,7 @@ class NowPlaytingView extends GetView<NowPlaytingController> {
     );
   }
 
-  Widget _buildTab(int index, String text, NowPlaytingController controller) {
+  Widget _buildTab(int index, String text, NowPlayingController controller) {
     return Tab(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),

@@ -10,9 +10,10 @@ class SearchResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO fix search results
     return GetBuilder<HomeController>(
       builder: (controller) {
-        return controller.isShowsListLoading.value
+        return controller.isSearchListLoading.value
             ? const CircularLoader()
             : Expanded(
                 child: ListView.builder(
@@ -37,7 +38,11 @@ class SearchResults extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.network(
-                                'https://image.tmdb.org/t/p/w500${controller.moviesList.results?[index].posterPath}',
+                                controller.searchList.results?[index]
+                                            .mediaType ==
+                                        'tv'
+                                    ? 'https://image.tmdb.org/t/p/w500${controller.tvSeriesList.results?[index].posterPath}'
+                                    : 'https://image.tmdb.org/t/p/w500${controller.moviesList.results?[index].posterPath}',
                                 fit: BoxFit.cover,
                               ),
                             ),
