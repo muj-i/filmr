@@ -16,9 +16,10 @@ class MovieDetailsView extends GetView<MovieDetailsController> {
   final int? id;
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      controller.getMovieDetails(id!);
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    Get.put(MovieDetailsController());
+    controller.getMovieDetails(id!);
+    // });
     // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () {

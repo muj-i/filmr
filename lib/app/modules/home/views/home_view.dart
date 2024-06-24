@@ -13,25 +13,28 @@ class HomeView extends GetView<HomeController> {
     Get.put(HomeController());
     controller.updateTabIndex(0);
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Find Popular, Top rated \nMovies and more...',
-                  style: TextStyle(fontSize: 24)),
-              const SizedBox(height: 20),
-              //! Search bar
-              const SearchTextField(),
-              const SizedBox(height: 20),
-              GetBuilder<HomeController>(builder: (homeController) {
-                return homeController.searchController.value.text.isEmpty
-                    ? const CategoryTabs()
-                    : const SearchResults();
-              }),
-            ],
-          ),
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 65,
+        title: const Text('Find Popular, Top rated \nMovies and more...',
+            style: TextStyle(fontSize: 24)),
+        centerTitle: false,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //! Search bar
+            const SearchTextField(),
+            const SizedBox(height: 20),
+            GetBuilder<HomeController>(builder: (homeController) {
+              return homeController.searchController.value.text.isEmpty
+                  ? const CategoryTabs()
+                  : const SearchResults();
+            }),
+          ],
         ),
       ),
     );

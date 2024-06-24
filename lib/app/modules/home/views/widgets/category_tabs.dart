@@ -1,6 +1,7 @@
 import 'package:filmr/app/modules/home/controllers/home_controller.dart';
 import 'package:filmr/app/modules/home/views/widgets/movies_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CategoryTabs extends StatelessWidget {
@@ -11,7 +12,7 @@ class CategoryTabs extends StatelessWidget {
     final HomeController controller = Get.put(HomeController());
     controller.updateTabIndex(0);
     return SizedBox(
-      height: 800,
+      height: Get.height * .5.h,
       child: DefaultTabController(
         length: 3,
         child: Builder(

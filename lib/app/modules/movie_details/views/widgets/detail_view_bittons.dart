@@ -55,7 +55,9 @@ class DetailsViewButtons extends StatelessWidget {
               onTap: () {
                 FavouriteMoviesKeeper.saveMovieDetails(
                     controller.movieDetailsList[controller.index.value]);
-                Get.snackbar('Favorite Movies', 'Movie added to favorites');
+                Get.snackbar('Favorite Movies', 'Movie added to favorites',
+                    backgroundColor:
+                        const Color.fromARGB(255, 33, 28, 49).withOpacity(.7));
               },
               child: const Icon(
                 Icons.favorite,

@@ -50,7 +50,7 @@ class MovieDetailsController extends GetxController {
     return '';
   }
 
-  RxBool isLoading = true.obs;
+  RxBool isLoading = false.obs;
   List<MovieDetailsModel> movieDetailsList = <MovieDetailsModel>[].obs;
   List<MovieDetailsTrailerModel> movieDetailsTrailerList =
       <MovieDetailsTrailerModel>[].obs;
