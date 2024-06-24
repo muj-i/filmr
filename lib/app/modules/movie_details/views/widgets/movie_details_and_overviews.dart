@@ -15,7 +15,7 @@ class MovieDetailsAndOverview extends StatelessWidget {
           height: 52,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: controller.movieDetails.genres?.length,
+              itemCount: controller.movieDetailsList[controller.index.value].genres?.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.all(8),
@@ -25,7 +25,7 @@ class MovieDetailsAndOverview extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    controller.movieDetails.genres?[index].name ?? '',
+                    controller.movieDetailsList[controller.index.value].genres?[index].name ?? '',
                     style: const TextStyle(fontSize: 16),
                   ),
                 );
@@ -38,14 +38,14 @@ class MovieDetailsAndOverview extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                controller.movieDetails.title ?? '',
+                controller.movieDetailsList[controller.index.value].title ?? '',
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(width: 15),
             Text(
-              'Rating: ${controller.movieDetails.voteAverage?.toStringAsPrecision(2).toString() ?? ''}',
+              'Rating: ${controller.movieDetailsList[controller.index.value].voteAverage?.toStringAsPrecision(2).toString() ?? ''}',
               style: const TextStyle(fontSize: 18),
             ),
           ],
@@ -57,7 +57,7 @@ class MovieDetailsAndOverview extends StatelessWidget {
         ),
         const SizedBox(height: 2),
         Text(
-          controller.movieDetails.overview ?? '',
+          controller.movieDetailsList[controller.index.value].overview ?? '',
         ),
         const SizedBox(height: 10),
       ],

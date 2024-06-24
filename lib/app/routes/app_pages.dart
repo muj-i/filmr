@@ -4,8 +4,6 @@ import '../modules/bottom_nav_layout/bindings/bottom_nav_layout_binding.dart';
 import '../modules/bottom_nav_layout/views/bottom_nav_layout_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/movie_details/bindings/movie_details_binding.dart';
-import '../modules/movie_details/views/movie_details_view.dart';
 import '../modules/now_playing/bindings/now_playing_binding.dart';
 import '../modules/now_playing/views/now_playing_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -38,11 +36,11 @@ class AppPages {
       page: () => const NowPlayingView(),
       binding: NowPlayingBinding(),
     ),
-    GetPage(
-      name: _Paths.MOVIE_DETAILS,
-      page: () => const MovieDetailsView(),
-      binding: MovieDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.MOVIE_DETAILS,
+    //   page: () => const MovieDetailsView(),
+    //   binding: MovieDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.USER_PROFILE,
       page: () => const UserProfileView(),

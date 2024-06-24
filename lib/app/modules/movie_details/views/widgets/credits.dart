@@ -20,7 +20,7 @@ class MovieCredits extends StatelessWidget {
             height: 250,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: controller.movieDetailsCreditsModel.cast?.length,
+                itemCount: controller.movieDetailsCreditsList[controller.index.value].cast?.length,
                 itemBuilder: (context, index) {
                   return Container(
                     // height:   20,
@@ -38,17 +38,17 @@ class MovieCredits extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
                               height: 200,
-                              controller.movieDetailsCreditsModel.cast?[index]
+                              controller.movieDetailsCreditsList[controller.index.value].cast?[index]
                                           .profilePath ==
                                       null
                                   ? 'https://via.placeholder.com/150'
-                                  : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsCreditsModel.cast?[index].profilePath}',
+                                  : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsCreditsList[controller.index.value].cast?[index].profilePath}',
                               fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            controller.movieDetailsCreditsModel.cast?[index]
+                            controller.movieDetailsCreditsList[controller.index.value].cast?[index]
                                     .name ??
                                 '',
                             style: const TextStyle(fontSize: 16),
@@ -67,7 +67,7 @@ class MovieCredits extends StatelessWidget {
             height: 250,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: controller.movieDetailsCreditsModel.crew?.length,
+                itemCount: controller.movieDetailsCreditsList[controller.index.value].crew?.length,
                 itemBuilder: (context, index) {
                   return Container(
                     // height:   20,
@@ -85,17 +85,17 @@ class MovieCredits extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             child: Image.network(
                               height: 200,
-                              controller.movieDetailsCreditsModel.crew?[index]
+                              controller.movieDetailsCreditsList[controller.index.value].crew?[index]
                                           .profilePath ==
                                       null
                                   ? 'https://via.placeholder.com/150'
-                                  : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsCreditsModel.crew?[index].profilePath}',
+                                  : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsCreditsList[controller.index.value].crew?[index].profilePath}',
                               fit: BoxFit.cover,
                             ),
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            controller.movieDetailsCreditsModel.crew?[index]
+                            controller.movieDetailsCreditsList[controller.index.value].crew?[index]
                                     .name ??
                                 '',
                             style: const TextStyle(fontSize: 16),

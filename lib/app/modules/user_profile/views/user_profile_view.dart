@@ -1,7 +1,7 @@
 import 'package:filmr/app/common/widgets/circular_loader.dart';
 import 'package:filmr/app/data/models/movie_details_model.dart';
 import 'package:filmr/app/data/utils/favorite_movie_keeper.dart';
-import 'package:filmr/app/routes/app_pages.dart';
+import 'package:filmr/app/modules/movie_details/views/movie_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -68,10 +68,15 @@ class UserProfileView extends GetView<UserProfileController> {
                                       onTap: () {
                                         if (movieDetailsDataList?[index].id !=
                                             null) {
-                                          Get.toNamed(Routes.MOVIE_DETAILS,
-                                              arguments: [
-                                                movieDetailsDataList?[index].id
-                                              ]);
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MovieDetailsView(
+                                                id: movieDetailsDataList?[index]
+                                                    .id,
+                                              ),
+                                            ),
+                                          );
                                         }
                                       },
                                       child: ClipRRect(

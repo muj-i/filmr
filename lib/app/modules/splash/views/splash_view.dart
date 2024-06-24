@@ -13,7 +13,7 @@ class SplashView extends GetView<SplashController> {
       // disableNavigation: true,
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
 
-      duration: 2000,
+      duration: 1000,
       nextScreen: const BottomNavLayoutView(),
       splash: Container(
         child: Center(

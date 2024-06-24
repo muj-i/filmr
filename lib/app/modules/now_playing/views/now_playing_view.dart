@@ -1,5 +1,5 @@
 import 'package:filmr/app/common/widgets/circular_loader.dart';
-import 'package:filmr/app/routes/app_pages.dart';
+import 'package:filmr/app/modules/movie_details/views/movie_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,9 +40,14 @@ class NowPlayingView extends GetView<NowPlayingController> {
                         InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.toNamed(Routes.MOVIE_DETAILS, arguments: [
-                              controller.moviesNowPlayingList.results?[index].id
-                            ]);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => MovieDetailsView(
+                                  id: controller
+                                      .moviesNowPlayingList.results![index].id,
+                                ),
+                              ),
+                            );
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

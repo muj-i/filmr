@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:filmr/app/data/utils/favorite_movie_keeper.dart';
-import 'package:filmr/app/modules/bottom_nav_layout/controllers/bottom_nav_layout_controller.dart';
 import 'package:filmr/app/modules/movie_details/controllers/movie_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,16 @@ class DetailsViewButtons extends StatelessWidget {
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => Get.back(),
+              onTap: () {
+                log(controller.index.value.toString());
+                controller.decreaseIndex();
+                log(controller.index.value.toString());
+                controller.isLoading.value = true;
+                Get.back();
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  controller.isLoading.value = false;
+                });
+              },
               child: const Icon(
                 Icons.arrow_back_ios_rounded,
                 color: Color.fromARGB(255, 33, 28, 49),
@@ -43,10 +53,9 @@ class DetailsViewButtons extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(30),
               onTap: () {
-                FavouriteMoviesKeeper.saveMovieDetails(controller.movieDetails);
-                Get.back();
-                Future.delayed(const Duration(milliseconds: 500),
-                    () => BottomNavLayoutController.to.changeScreen(2));
+                FavouriteMoviesKeeper.saveMovieDetails(
+                    controller.movieDetailsList[controller.index.value]);
+                Get.snackbar('Favorite Movies', 'Movie added to favorites');
               },
               child: const Icon(
                 Icons.favorite,

@@ -1,5 +1,7 @@
+import 'dart:developer';
+
 import 'package:filmr/app/modules/movie_details/controllers/movie_details_controller.dart';
-import 'package:filmr/app/routes/app_pages.dart';
+import 'package:filmr/app/modules/movie_details/views/movie_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +23,7 @@ class RecommendationMovies extends StatelessWidget {
             height: 300,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount:
-                    controller.movieDetailsRecommendationsModel.results?.length,
+                itemCount: controller.recommendationsResponse?.results?.length,
                 itemBuilder: (context, index) {
                   return Container(
                     // height:   20,
@@ -37,16 +38,33 @@ class RecommendationMovies extends StatelessWidget {
                         InkWell(
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            Get.back();
-                            Future.delayed(
-                                const Duration(milliseconds: 500),
-                                () => Get.toNamed(Routes.MOVIE_DETAILS,
-                                        arguments: [
-                                          controller
-                                              .movieDetailsRecommendationsModel
-                                              .results?[index]
-                                              .id
-                                        ]));
+                            // controller.getMovieDetails(controller
+                            //     .movieDetailsRecommendationsList[
+                            //         controller.index.value]
+                            //     .results![index]
+                            //     .id);
+                            log(controller.index.value.toString());
+                            controller.increaseIndex();
+                            log(controller.index.value.toString());
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => MovieDetailsView(
+                                  id: controller.recommendationsResponse
+                                      ?.results?[index].id,
+                                ),
+                              ),
+                            );
+
+                            // Get.back();
+                            // Future.delayed(
+                            //     const Duration(milliseconds: 500),
+                            //     () => Get.toNamed(Routes.MOVIE_DETAILS,
+                            //             arguments: [
+                            //               controller
+                            //                   .movieDetailsRecommendationsModel
+                            //                   .results?[index]
+                            //                   .id
+                            //             ]));
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -56,11 +74,14 @@ class RecommendationMovies extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
                                     height: 250,
-                                    controller.movieDetailsRecommendationsModel
-                                                .results?[index].posterPath ==
+                                    controller
+                                                .movieDetailsRecommendationsList[
+                                                    controller.index.value]
+                                                .results?[index]
+                                                .posterPath ==
                                             null
                                         ? 'https://via.placeholder.com/150'
-                                        : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsRecommendationsModel.results?[index].posterPath}',
+                                        : 'https://image.tmdb.org/t/p/w500${controller.movieDetailsRecommendationsList[controller.index.value].results?[index].posterPath}',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -75,7 +96,8 @@ class RecommendationMovies extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5)),
                                     child: Text(
                                       controller
-                                              .movieDetailsRecommendationsModel
+                                              .movieDetailsRecommendationsList[
+                                                  controller.index.value]
                                               .results?[index]
                                               .voteAverage!
                                               .toStringAsFixed(2)
