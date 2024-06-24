@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:filmr/app/modules/home/controllers/home_controller.dart';
 import 'package:filmr/app/modules/home/views/widgets/movies_list.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class CategoryTabs extends StatelessWidget {
     final HomeController controller = Get.put(HomeController());
     controller.updateTabIndex(0);
     return SizedBox(
-      height: Get.height * .5.h,
+      // height: Get.height * .5.h,
       child: DefaultTabController(
         length: 3,
         child: Builder(
@@ -57,17 +59,15 @@ class CategoryTabs extends StatelessWidget {
                       _buildTab(2, 'Upcoming', controller),
                     ],
                   ),
-                  const Expanded(
-                    child: SizedBox(
-                      // height: Get.height - kBottomNavigationBarHeight - 100,
-                      child: TabBarView(
-                          // physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            MoviesList(),
-                            MoviesList(),
-                            MoviesList(),
-                          ]),
-                    ),
+                  SizedBox(
+                    height:Platform.isAndroid? Get.height * .573.h : Get.height * .455.h,
+                    child: const TabBarView(
+                        // physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          MoviesList(),
+                          MoviesList(),
+                          MoviesList(),
+                        ]),
                   ),
                 ],
               );
