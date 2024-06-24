@@ -20,8 +20,13 @@ class MoviesList extends StatelessWidget {
                 childAspectRatio: 1.5,
                 mainAxisExtent: 360,
               ),
-              itemCount: controller.moviesList.results?.length,
+              itemCount: controller.moviesList.results!.length + 1,
               itemBuilder: (context, index) {
+                if (controller.moviesList.results!.length == index) {
+                  return const SizedBox(
+                    height: 100,
+                  );
+                }
                 return Container(
                   margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
